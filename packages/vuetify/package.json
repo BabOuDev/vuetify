@@ -27,6 +27,7 @@
   },
   "funding": {
     "type": "github",
+    "./util/colorUtils": "./lib/util/colorUtils.mjs",
     "url": "https://github.com/sponsors/johnleider"
   },
   "main": "lib/framework.mjs",
