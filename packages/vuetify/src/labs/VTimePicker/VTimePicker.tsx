@@ -64,6 +64,10 @@ export const VTimePicker = genericComponent<VTimePickerSlots>()({
   },
 
   setup (props, { emit, slots }) {
+    // Emit click events for hour, minute, and second buttons
+    const emitButtonClick = (type: 'hour' | 'minute' | 'second', value: number) => {
+      emit(`click:${type}`, value);
+    };
     const { t } = useLocale()
     const inputHour = ref(null as number | null)
     const inputMinute = ref(null as number | null)
@@ -216,6 +220,9 @@ export const VTimePicker = genericComponent<VTimePickerSlots>()({
 
       // TODO: clean up (Note from V2 code)
       const range = type === 'minute'
+      // Emit click events
+      emitButtonClick(selectingNames[selecting.value] as 'hour' | 'minute' | 'second', value);
+
         ? range60
         : (type === 'second'
           ? range60
@@ -321,7 +328,7 @@ export const VTimePicker = genericComponent<VTimePickerSlots>()({
                 onUpdate:selecting={ (value: 1 | 2 | 3) => (selecting.value = value) }
                 ref={ controlsRef }
               />
-            ),
+            onClick={value => emitButtonClick(selectingNames[selecting.value] as 'hour' | 'minute' | 'second', value)}
             default: () => (
               <VTimePickerClock
                 { ...timePickerClockProps }

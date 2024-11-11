@@ -50,6 +50,10 @@ export const VTimePickerControls = genericComponent()({
         hour = hour ? ((hour - 1) % 12 + 1) : 12
       }
       return (
+  emits: {
+    'click:hour': (val: number) => true,
+    'click:minute': (val: number) => true,
+    'click:second': (val: number) => true,
         <div class="v-time-picker-controls">
           <div
             class={{
@@ -80,6 +84,8 @@ export const VTimePickerControls = genericComponent()({
 
             <VBtn
               active={ props.selecting === 2 }
+              onClick: () => emit('click:hour', props.hour!),
+              
               color={ props.selecting === 2 ? props.color : undefined }
               class={{
                 'v-time-picker-controls__time__btn': true,
@@ -88,12 +94,16 @@ export const VTimePickerControls = genericComponent()({
                 'v-time-picker-controls__time--with-seconds__btn': props.useSeconds,
               }}
               disabled={ props.disabled }
+              onClick: () => emit('click:minute', props.minute!),
+              
               variant="tonal"
               text={ props.minute == null ? '--' : pad(props.minute) }
               onClick={ () => emit('update:selecting', SelectingTimes.Minute) }
             />
 
             {
+              onClick: () => emit('click:second', props.second!),
+
               props.useSeconds && (
                 <span
                   class={[
