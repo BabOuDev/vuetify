@@ -114,4 +114,5 @@ export default [
   createTypesConfig('locale/adapters/*.d.ts', 'lib/locale/adapters/*.d.mts'),
   createTypesConfig('iconsets/*.d.ts', 'lib/iconsets/*.d.mts'),
   createTypesConfig('util/colors.d.ts', 'lib/util/colors.d.mts'),
+  createTypesConfig('util/colorUtils.d.ts', 'lib/util/colorUtils.d.mts'),
 ].flat()
